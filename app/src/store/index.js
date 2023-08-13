@@ -23,6 +23,9 @@ export default new Vuex.Store({
     SET_ITEM_TO_BE_EDITED(state, item) {
       state.itemToBeEdited = structuredClone(item);
     },
+    UPDATE_USER(state, item) {
+      state.items[item.id - 1] = item;
+    },
   },
   actions: {
     showDialog(context) {
@@ -33,6 +36,9 @@ export default new Vuex.Store({
     },
     setItemToBeEdited(context, item) {
       context.commit('SET_ITEM_TO_BE_EDITED', item);
+    },
+    updateUser(context, item) {
+      context.commit('UPDATE_USER', item);
     },
   },
   modules: {

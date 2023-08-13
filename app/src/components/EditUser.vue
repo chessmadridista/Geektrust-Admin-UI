@@ -67,7 +67,7 @@ export default {
             this.$store.dispatch('hideDialog');
         },
         update() {
-            
+            this.$store.dispatch('updateUser', this.itemToBeEdited);
             this.$store.dispatch('hideDialog');
         },
     },
