@@ -2,10 +2,22 @@
   <v-container>
     <v-row>
       <v-col>
+        <v-text-field 
+          outlined
+          dense
+          background-color="#fff"
+          label="Search"
+          v-model="tableSearchTerm"
+        />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
         <v-data-table
           class="elevation-2"
           :headers="headers"
           :items="users"
+          :search="tableSearchTerm"
         >
           <template
             v-slot:[`item.actions`]="{ item }"
@@ -28,6 +40,7 @@ export default {
     EditUser,
   },
   data: () => ({
+    tableSearchTerm: '',
     headers: [
       {
         text: 'Checkbox',
