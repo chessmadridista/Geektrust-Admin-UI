@@ -6,7 +6,7 @@
           outlined
           dense
           background-color="#fff"
-          label="Search"
+          label="Search by name, email or role"
           v-model="tableSearchTerm"
         />
       </v-col>
@@ -64,7 +64,6 @@ export default {
       },
     ],
     users: [],
-    itemToBeEdited: null,
   }),
   methods: {
     capitalizeRole() {
@@ -74,7 +73,7 @@ export default {
       }
     },
     editItem(item) {
-      this.$store.dispatch('setItemToBeEdited', item);
+      this.$store.dispatch('setUserToBeEdited', item);
       this.$store.dispatch('showDialog');
     },
   },
