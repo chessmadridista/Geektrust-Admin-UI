@@ -1,6 +1,6 @@
 <template>
     <v-dialog v-model="showDialog">
-        <v-card>
+        <v-card class="pb-2">
             <v-card-title>Edit user</v-card-title>
             <v-card-text>
                 <v-container>
