@@ -3,10 +3,10 @@
     <v-row>
       <v-col>
         <v-data-table
+          class="elevation-2"
           :headers="headers"
           :items="users"
         >
-
         </v-data-table>
       </v-col>
     </v-row>
