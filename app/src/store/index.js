@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     showDialog: false,
+    users: [],
     userToBeEdited: {},
   },
   getters: {
@@ -23,6 +24,9 @@ export default new Vuex.Store({
     SET_USER_TO_BE_EDITED(state, user) {
       state.userToBeEdited = structuredClone(user);
     },
+    SET_USERS(state, users) {
+      state.users = users;
+    },
     UPDATE_USER(state, user) {
       console.log(`Item to be edited = ${user}, ${user.id}`);
       console.log(`Item = ${state.users[parseInt(user.id) - 1]}`)
@@ -38,6 +42,9 @@ export default new Vuex.Store({
     },
     setUserToBeEdited(context, user) {
       context.commit('SET_USER_TO_BE_EDITED', user);
+    },
+    setUsers(context, users) {
+      context.commit('SET_USERS', users);
     },
     updateUser(context, user) {
       context.commit('UPDATE_USER', user);

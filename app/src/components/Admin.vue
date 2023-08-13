@@ -88,6 +88,7 @@ export default {
     })
     .then((data) => {
       this.users = data;
+      this.$store.dispatch('setUsers', this.users);
       this.capitalizeRole();
     });
   },
