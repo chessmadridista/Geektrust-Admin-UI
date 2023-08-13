@@ -16,7 +16,7 @@
         </v-data-table>
       </v-col>
     </v-row>
-    <EditUser :showDialog="showDialog" />
+    <EditUser />
   </v-container>
 </template>
 <script>
@@ -51,7 +51,6 @@ export default {
       },
     ],
     users: [],
-    showDialog: false,
   }),
   methods: {
     capitalizeRole() {
@@ -59,6 +58,10 @@ export default {
         const role = user.role;
         user.role = role.charAt(0).toUpperCase() + role.slice(1);
       }
+    },
+    editItem(item) {
+      console.log(item);
+      this.$store.dispatch('showDialog');
     },
   },
   beforeCreate() {
