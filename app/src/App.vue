@@ -11,19 +11,19 @@
     </v-app-bar>
 
     <v-main>
-      <HelloWorld/>
+      <Admin />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import Admin from './components/Admin';
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
+    Admin,
   },
 
   data: () => ({
