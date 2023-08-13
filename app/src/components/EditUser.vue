@@ -33,9 +33,9 @@
                 </v-container>
             </v-card-text>
             <v-card-actions>
-                <v-btn text color="error">Cancel</v-btn>
+                <v-btn text color="error" @click="cancel">Cancel</v-btn>
                 <v-spacer></v-spacer>
-                <v-btn color="primary">Update</v-btn>
+                <v-btn color="primary" @click="update">Update</v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>
@@ -58,6 +58,14 @@ export default {
                     this.$store.dispatch('hideDialog');
                 }
             }
+        },
+    },
+    methods: {
+        cancel() {
+            this.$store.dispatch('hideDialog');
+        },
+        update() {
+            this.$store.dispatch('hideDialog');
         },
     },
 }
