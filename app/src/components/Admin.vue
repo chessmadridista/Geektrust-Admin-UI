@@ -41,6 +41,14 @@
       ],
       users: [],
     }),
+    methods: {
+      capitalizeRole() {
+        for (let user of this.users) {
+          const role = user.role;
+          user.role = role.charAt(0).toUpperCase() + role.slice(1);
+        }
+      },
+    },
     beforeCreate() {
       const API_ENDPOINT = 'https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json';
       fetch(API_ENDPOINT)
@@ -49,6 +57,7 @@
       })
       .then((data) => {
         this.users = data;
+        this.capitalizeRole();
       });
     },
   }
