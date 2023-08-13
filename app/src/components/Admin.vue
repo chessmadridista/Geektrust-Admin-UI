@@ -20,10 +20,10 @@
           :search="tableSearchTerm"
         >
           <template
-            v-slot:[`item.actions`]="{ item }"
+            v-slot:[`item.actions`]="{ user }"
           >
-            <v-icon @click="editItem(item)" color="primary">mdi-pencil</v-icon>
-            <v-icon @click="deleteItem(item)" color="error">mdi-delete</v-icon>
+            <v-icon @click="editUser(user)" color="primary">mdi-pencil</v-icon>
+            <v-icon @click="deleteItem(user)" color="error">mdi-delete</v-icon>
           </template>
         </v-data-table>
       </v-col>
@@ -72,9 +72,12 @@ export default {
         user.role = role.charAt(0).toUpperCase() + role.slice(1);
       }
     },
-    editItem(item) {
-      this.$store.dispatch('setUserToBeEdited', item);
+    editUser(user) {
+      this.$store.dispatch('setUserToBeEdited', user);
       this.$store.dispatch('showDialog');
+    },
+    deleteUser(user) {
+      this.$store.dispatch('deleteUser', user);
     },
   },
   beforeCreate() {

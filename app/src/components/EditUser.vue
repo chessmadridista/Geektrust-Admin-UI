@@ -72,7 +72,7 @@ export default {
         },
     },
     updated() {
-        this.itemToBeEdited = this.$store.getters.getItemToBeEdited;
+        this.itemToBeEdited = this.$store.getters.getUserToBeEdited;
     },
 }
 </script>

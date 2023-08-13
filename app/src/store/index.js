@@ -20,13 +20,13 @@ export default new Vuex.Store({
     HIDE_DIALOG(state) {
       state.showDialog = false;
     },
-    SET_USER_TO_BE_EDITED(state, item) {
-      state.userToBeEdited = structuredClone(item);
+    SET_USER_TO_BE_EDITED(state, user) {
+      state.userToBeEdited = structuredClone(user);
     },
-    UPDATE_USER(state, item) {
-      console.log(`Item to be edited = ${item}, ${item.id}`);
-      console.log(`Item = ${state.items[parseInt(item.id) - 1]}`)
-      state.items[parseInt(item.id) - 1] = item;
+    UPDATE_USER(state, user) {
+      console.log(`Item to be edited = ${user}, ${user.id}`);
+      console.log(`Item = ${state.users[parseInt(user.id) - 1]}`)
+      state.users[parseInt(user.id) - 1] = user;
     },
   },
   actions: {
@@ -36,11 +36,11 @@ export default new Vuex.Store({
     hideDialog(context) {
       context.commit('HIDE_DIALOG');
     },
-    setUserToBeEdited(context, item) {
-      context.commit('SET_USER_TO_BE_EDITED', item);
+    setUserToBeEdited(context, user) {
+      context.commit('SET_USER_TO_BE_EDITED', user);
     },
-    updateUser(context, item) {
-      context.commit('UPDATE_USER', item);
+    updateUser(context, user) {
+      context.commit('UPDATE_USER', user);
     },
   },
   modules: {
