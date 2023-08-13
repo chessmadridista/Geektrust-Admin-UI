@@ -1,7 +1,7 @@
 <template>
     <v-dialog v-model="showDialog">
         <v-card class="pb-2">
-            <v-card-title>Edit user</v-card-title>
+            <v-card-title class="justify-center blue--text text--darken-2">Edit user</v-card-title>
             <v-card-text>
                 <v-container>
                     <v-row>
