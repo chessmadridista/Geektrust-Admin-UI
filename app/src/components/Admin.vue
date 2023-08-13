@@ -16,7 +16,7 @@
         </v-data-table>
       </v-col>
     </v-row>
-    <EditUser />
+    <EditUser :itemToBeEdited="itemToBeEdited" />
   </v-container>
 </template>
 <script>
@@ -51,6 +51,7 @@ export default {
       },
     ],
     users: [],
+    itemToBeEdited: null,
   }),
   methods: {
     capitalizeRole() {
@@ -60,7 +61,7 @@ export default {
       }
     },
     editItem(item) {
-      console.log(item);
+      this.itemToBeEdited = item;
       this.$store.dispatch('showDialog');
     },
   },
