@@ -28,7 +28,7 @@
         </v-data-table>
       </v-col>
     </v-row>
-    <EditUser :itemToBeEdited="itemToBeEdited" />
+    <EditUser />
   </v-container>
 </template>
 <script>
@@ -74,7 +74,7 @@ export default {
       }
     },
     editItem(item) {
-      this.itemToBeEdited = item;
+      this.$store.dispatch('setItemToBeEdited', item);
       this.$store.dispatch('showDialog');
     },
   },

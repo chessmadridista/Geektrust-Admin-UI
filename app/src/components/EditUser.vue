@@ -9,8 +9,8 @@
                             <v-text-field 
                                 dense
                                 outlined
-                                label="Name"
-                                :value="itemToBeEdited.name"
+                                label="Name" 
+                                v-model="itemToBeEdited.name"
                             />
                         </v-col>
                         <v-col cols="6">
@@ -18,7 +18,7 @@
                                 dense
                                 outlined
                                 label="Email"
-                                :value="itemToBeEdited.email"
+                                v-model="itemToBeEdited.email"
                             />
                         </v-col>
                         <v-col cols="12">
@@ -26,7 +26,7 @@
                                 dense
                                 outlined
                                 label="Role"
-                                :value="itemToBeEdited.role"
+                                v-model="itemToBeEdited.role"
                             />
                         </v-col>
                     </v-row>
@@ -43,9 +43,11 @@
 <script>
 export default {
     name: 'EditUser',
-    props: [
-        'itemToBeEdited',
-    ],
+    data() {
+        return {
+            itemToBeEdited: {},
+        };
+    },
     computed: {
         showDialog: {
             get() {
@@ -65,8 +67,12 @@ export default {
             this.$store.dispatch('hideDialog');
         },
         update() {
+            
             this.$store.dispatch('hideDialog');
         },
+    },
+    updated() {
+        this.itemToBeEdited = this.$store.getters.getItemToBeEdited;
     },
 }
 </script>
