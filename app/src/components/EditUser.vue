@@ -10,7 +10,7 @@
                                 dense
                                 outlined
                                 label="Name" 
-                                v-model="itemToBeEdited.name"
+                                v-model="userToBeEdited.name"
                             />
                         </v-col>
                         <v-col cols="6">
@@ -18,7 +18,7 @@
                                 dense
                                 outlined
                                 label="Email"
-                                v-model="itemToBeEdited.email"
+                                v-model="userToBeEdited.email"
                             />
                         </v-col>
                         <v-col cols="12">
@@ -26,7 +26,7 @@
                                 dense
                                 outlined
                                 label="Role"
-                                v-model="itemToBeEdited.role"
+                                v-model="userToBeEdited.role"
                             />
                         </v-col>
                     </v-row>
@@ -45,7 +45,7 @@ export default {
     name: 'EditUser',
     data() {
         return {
-            itemToBeEdited: {},
+            userToBeEdited: {},
         };
     },
     computed: {
@@ -67,12 +67,12 @@ export default {
             this.$store.dispatch('hideDialog');
         },
         update() {
-            this.$store.dispatch('updateUser', this.itemToBeEdited);
+            this.$store.dispatch('updateUser', this.userToBeEdited);
             this.$store.dispatch('hideDialog');
         },
     },
     updated() {
-        this.itemToBeEdited = this.$store.getters.getUserToBeEdited;
+        this.userToBeEdited = this.$store.getters.getUserToBeEdited;
     },
 }
 </script>

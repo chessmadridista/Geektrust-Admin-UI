@@ -16,14 +16,14 @@
         <v-data-table
           class="elevation-2"
           :headers="headers"
-          :items="users"
+          :items="getUsers"
           :search="tableSearchTerm"
         >
           <template
-            v-slot:[`item.actions`]="{ user }"
+            v-slot:[`item.actions`]="{ item }"
           >
-            <v-icon @click="editUser(user)" color="primary">mdi-pencil</v-icon>
-            <v-icon @click="deleteItem(user)" color="error">mdi-delete</v-icon>
+            <v-icon @click="editUser(item)" color="primary">mdi-pencil</v-icon>
+            <v-icon @click="deleteUser(item)" color="error">mdi-delete</v-icon>
           </template>
         </v-data-table>
       </v-col>
@@ -65,14 +65,20 @@ export default {
     ],
     users: [],
   }),
+  computed: {
+    getUsers() {
+      return this.$store.getters.getUsers;
+    },
+  },
   methods: {
-    capitalizeRole() {
-      for (let user of this.users) {
+    capitalizeRole(data) {
+      for (let user of data) {
         const role = user.role;
         user.role = role.charAt(0).toUpperCase() + role.slice(1);
       }
     },
     editUser(user) {
+      console.log(`User = ${user}`);
       this.$store.dispatch('setUserToBeEdited', user);
       this.$store.dispatch('showDialog');
     },
@@ -87,9 +93,9 @@ export default {
       return response.json();
     })
     .then((data) => {
-      this.users = data;
-      this.$store.dispatch('setUsers', this.users);
-      this.capitalizeRole();
+      // this.users = data;
+      this.capitalizeRole(data);
+      this.$store.dispatch('setUsers', data);
     });
   },
 }

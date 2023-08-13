@@ -10,6 +10,9 @@ export default new Vuex.Store({
     userToBeEdited: {},
   },
   getters: {
+    getUsers(state) {
+      return state.users;
+    },
     getUserToBeEdited(state) {
       return state.userToBeEdited;
     },
@@ -30,7 +33,12 @@ export default new Vuex.Store({
     UPDATE_USER(state, user) {
       console.log(`Item to be edited = ${user}, ${user.id}`);
       console.log(`Item = ${state.users[parseInt(user.id) - 1]}`)
-      state.users[parseInt(user.id) - 1] = user;
+      // state.users = user;
+    },
+    DELETE_USER(state, userToBeRemoved) {
+      state.users = state.users.filter((user) => {
+        return user !== userToBeRemoved;
+      });
     },
   },
   actions: {
@@ -48,6 +56,9 @@ export default new Vuex.Store({
     },
     updateUser(context, user) {
       context.commit('UPDATE_USER', user);
+    },
+    deleteUser(context, user) {
+      context.commit('DELETE_USER', user);
     },
   },
   modules: {
