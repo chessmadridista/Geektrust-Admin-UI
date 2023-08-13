@@ -7,6 +7,12 @@
           :headers="headers"
           :items="users"
         >
+          <template
+            v-slot:[`item.actions`]="{ item }"
+          >
+            <v-icon @click="editItem(item)" color="primary">mdi-pencil</v-icon>
+            <v-icon @click="deleteItem(item)" color="error">mdi-delete</v-icon>
+          </template>
         </v-data-table>
       </v-col>
     </v-row>
@@ -20,7 +26,7 @@
       headers: [
         {
           text: 'Checkbox',
-          value: 'id',
+          value: 'checkbox',
         },
         {
           text: 'Name',
@@ -36,7 +42,7 @@
         },
         {
           text: 'Actions',
-          value: 'role',
+          value: 'actions',
         },
       ],
       users: [],
