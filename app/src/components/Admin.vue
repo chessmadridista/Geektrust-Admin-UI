@@ -136,7 +136,6 @@ export default {
       return response.json();
     })
     .then((data) => {
-      // this.users = data;
       this.capitalizeRole(data);
       this.$store.dispatch('setUsers', data);
     });
