@@ -30,8 +30,13 @@ export default new Vuex.Store({
     SET_USERS(state, users) {
       state.users = users;
     },
-    UPDATE_USER(state, index, user) {
-      state.users[index] = user;
+    UPDATE_USER(state, { index, updatedUser }) {
+      state.users[index] = updatedUser;
+      // This snippet is needed as Vue reactivity 
+      // does not detect state changes via index assignment in array of objects.
+      // Using slice, a new array is assigned and 
+      // Vue reactivity can detect the changes.
+      state.users = state.users.slice(); 
     },
     DELETE_USER(state, userToBeRemoved) {
       state.users = state.users.filter((user) => {
@@ -53,10 +58,10 @@ export default new Vuex.Store({
       context.commit('SET_USERS', users);
     },
     updateUser(context, updatedUser) {
-      console.log(`Updated user = ${updatedUser.id}`);
-      const index = context.getters.getUsers.findIndex(user => user.id === updatedUser.id);
-      console.log(`Index = ${index}`);
-      context.commit('UPDATE_USER', index, updatedUser);
+      const index = context.getters.getUsers.findIndex((user) => {
+        return user.id === updatedUser.id;
+      });
+      context.commit('UPDATE_USER', { index, updatedUser, });
     },
     deleteUser(context, user) {
       context.commit('DELETE_USER', user);
