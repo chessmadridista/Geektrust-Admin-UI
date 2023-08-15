@@ -38,6 +38,16 @@
         </v-pagination>
       </v-col>
     </v-row>
+    <v-row>
+      <v-col>
+        <v-btn block color="error"
+          :disabled="selectedUsers.length === 0"
+          @click="deleteSelectedUsers"
+        >
+          Delete selected users
+        </v-btn>
+      </v-col>
+    </v-row>
     <EditUser />
   </v-container>
 </template>
@@ -110,6 +120,13 @@ export default {
     deleteUser(user) {
       this.$store.dispatch('deleteUser', user);
       this.deleteUserFromSelectedUsers(user);
+    },
+    deleteSelectedUsers() {
+      for (let user of this.selectedUsers) {
+        this.$store.dispatch('deleteUser', user);
+      }
+
+      this.selectedUsers = [];
     },
   },
   beforeCreate() {
