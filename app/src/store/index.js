@@ -30,10 +30,8 @@ export default new Vuex.Store({
     SET_USERS(state, users) {
       state.users = users;
     },
-    UPDATE_USER(state, user) {
-      console.log(`Item to be edited = ${user}, ${user.id}`);
-      console.log(`Item = ${state.users[parseInt(user.id) - 1]}`)
-      // state.users = user;
+    UPDATE_USER(state, index, user) {
+      state.users[index] = user;
     },
     DELETE_USER(state, userToBeRemoved) {
       state.users = state.users.filter((user) => {
@@ -49,13 +47,16 @@ export default new Vuex.Store({
       context.commit('HIDE_DIALOG');
     },
     setUserToBeEdited(context, user) {
-      context.commit('SET_USER_TO_BE_EDITED', user);
+      context.commit('SET_USER_TO_BE_EDITED', structuredClone(user));
     },
     setUsers(context, users) {
       context.commit('SET_USERS', users);
     },
-    updateUser(context, user) {
-      context.commit('UPDATE_USER', user);
+    updateUser(context, updatedUser) {
+      console.log(`Updated user = ${updatedUser.id}`);
+      const index = context.getters.getUsers.findIndex(user => user.id === updatedUser.id);
+      console.log(`Index = ${index}`);
+      context.commit('UPDATE_USER', index, updatedUser);
     },
     deleteUser(context, user) {
       context.commit('DELETE_USER', user);
