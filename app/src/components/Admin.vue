@@ -19,6 +19,7 @@
           :items="getUsers"
           :page.sync="selectedPage"
           :search="tableSearchTerm"
+          hide-default-footer
         >
           <template
             v-slot:[`item.actions`]="{ item }"
@@ -28,6 +29,7 @@
           </template>
         </v-data-table>
         <v-pagination
+          class="mt-2"
           v-model="selectedPage"
           :length="getNumberOfPages"
         >
