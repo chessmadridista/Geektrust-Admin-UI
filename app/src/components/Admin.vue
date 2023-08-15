@@ -17,6 +17,7 @@
           class="elevation-2"
           :headers="headers"
           :items="getUsers"
+          :page.sync="selectedPage"
           :search="tableSearchTerm"
         >
           <template
@@ -26,6 +27,11 @@
             <v-icon @click="deleteUser(item)" color="error">mdi-delete</v-icon>
           </template>
         </v-data-table>
+        <v-pagination
+          v-model="selectedPage"
+          :length="getNumberOfPages"
+        >
+        </v-pagination>
       </v-col>
     </v-row>
     <EditUser />
@@ -64,10 +70,21 @@ export default {
       },
     ],
     users: [],
+    selectedPage: 1,
   }),
   computed: {
     getUsers() {
       return this.$store.getters.getUsers;
+    },
+    getNumberOfPages() {
+      const users = this.getUsers;
+      let usersLength = users.length / 10;
+
+      if (users.length % 10 !== 0) {
+        usersLength += 1;
+      }
+
+      return usersLength;
     },
   },
   methods: {
