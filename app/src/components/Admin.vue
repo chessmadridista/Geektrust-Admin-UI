@@ -14,6 +14,7 @@
     <v-row>
       <v-col>
         <v-data-table
+          v-model="selectedUsers"
           class="elevation-2"
           show-select
           :headers="headers"
@@ -69,6 +70,7 @@ export default {
       },
     ],
     users: [],
+    selectedUsers: [],
     selectedPage: 1,
   }),
   computed: {
