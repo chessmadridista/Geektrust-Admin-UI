@@ -142,3 +142,8 @@ export default {
   },
 }
 </script>
+<style scoped>
+::v-deep .v-data-table-header th {
+  background-color: #ffecd8;
+}
+</style>
