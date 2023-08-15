@@ -15,6 +15,7 @@
       <v-col>
         <v-data-table
           class="elevation-2"
+          show-select
           :headers="headers"
           :items="getUsers"
           :page.sync="selectedPage"
@@ -50,10 +51,6 @@ export default {
   data: () => ({
     tableSearchTerm: '',
     headers: [
-      {
-        text: 'Checkbox',
-        value: 'checkbox',
-      },
       {
         text: 'Name',
         value: 'name',
