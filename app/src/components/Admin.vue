@@ -100,8 +100,16 @@ export default {
       this.$store.dispatch('setUserToBeEdited', user);
       this.$store.dispatch('showDialog');
     },
+    deleteUserFromSelectedUsers(deletedUser) {
+      if (this.selectedUsers.indexOf(deletedUser) >= 0) {
+        this.selectedUsers = this.selectedUsers.filter((user) => {
+          return user !== deletedUser;
+        });
+      } 
+    },
     deleteUser(user) {
       this.$store.dispatch('deleteUser', user);
+      this.deleteUserFromSelectedUsers(user);
     },
   },
   beforeCreate() {
